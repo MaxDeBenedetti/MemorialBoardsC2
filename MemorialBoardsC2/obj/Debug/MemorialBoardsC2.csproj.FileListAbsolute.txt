@@ -1,0 +1,5 @@
+D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.exe.config
+D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.exe
+D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.pdb
+D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.exe
+D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.pdb
