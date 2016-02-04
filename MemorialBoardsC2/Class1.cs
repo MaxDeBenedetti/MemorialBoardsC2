@@ -227,9 +227,8 @@ namespace MemorialBoardsC2
             deathdateG = new DateTime(year, monthG, dayG, gc);
 
             yearH = hc.GetYear(deathdateG);
-            monthH = hc.GetMonth(deathdateG);
+            monthH = CorrectedHebrewMonth(deathdateG);
             dayH = hc.GetDayOfMonth(deathdateG);
-            
         }
 
 
@@ -246,8 +245,26 @@ namespace MemorialBoardsC2
         
         public override string ToString()
         {
+            HebrewCalendar hc = new HebrewCalendar();
+            DateTime d = DateTime.Today;
+            int year = hc.GetYear(d);
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, yearH);
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, year);
+        }
+
+        public int CorrectedHebrewMonth(DateTime d)
+        {
+            HebrewCalendar hc = new HebrewCalendar();
+            int zeroCountMonth = hc.GetMonth(d) - 1;//having my months be zero count allows for modulo division
+            
+            if (hc.IsLeapYear(hc.GetYear(d))){
+                zeroCountMonth = (zeroCountMonth + 6) % 13;
+            }
+            else
+            {
+                zeroCountMonth = (zeroCountMonth + 6) % 12;
+            }
+            return zeroCountMonth + 1;
         }
     }
 }
