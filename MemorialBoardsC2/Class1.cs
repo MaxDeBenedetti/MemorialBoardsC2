@@ -194,6 +194,8 @@ namespace MemorialBoardsC2
             }
         }
 
+        private int preferEnglish = -1;
+
         public Person()
         {
 
@@ -231,27 +233,28 @@ namespace MemorialBoardsC2
             dayH = hc.GetDayOfMonth(deathdateG);
         }
 
-
-        /// <summary>
-        /// Determins if the current person would prefer their english or hebrew death date to be used.
-        /// Very hardcoded right now. should change this later.
-        /// </summary>
-        /// <returns>true if person prefered the english date</returns>
-        public bool useEnglish()
-        {
-            return (!(String.Equals(id, "LAWAR1", StringComparison.CurrentCultureIgnoreCase)));
-        }
-
         
         public override string ToString()
         {
+            //The following bloc ensures that people die in the past.
             HebrewCalendar hc = new HebrewCalendar();
             DateTime d = DateTime.Today;
-            int year = hc.GetYear(d);
+            int year = (hc.IsLeapYear(hc.GetYear(d))) ? 5774 : 5773;
+            year =CheckPrefernce() ? year : yearH;
+
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\"",
                 plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, year);
         }
 
+        /// <summary>
+        /// Converts from Microsoft's Hebrew month numbering system to usual Hebrew month numbering system
+        /// The Hebrew calendar begins on the first day of the seventh month
+        /// To illustrate this problem:
+        /// Microsoft says since Tishrei is the first month of the new year it is number 1
+        /// However, Tishrei is normally number 7
+        /// </summary>
+        /// <param name="d">A DateTime</param>
+        /// <returns>The corrected month number</returns>
         public int CorrectedHebrewMonth(DateTime d)
         {
             HebrewCalendar hc = new HebrewCalendar();
@@ -265,6 +268,21 @@ namespace MemorialBoardsC2
                 zeroCountMonth = (zeroCountMonth + 6) % 12;
             }
             return zeroCountMonth + 1;
+        }
+
+        /// <summary>
+        /// Checks to see if the person prefers to go by the English or Hebrew death date
+        /// </summary>
+        /// <returns>true if the person prefers English, false if Hebrew</returns>
+        public bool CheckPrefernce()
+        {
+            if(preferEnglish == -1)
+            {
+                preferEnglish = FileHandler.checkPreference(this) ? 1 : 0;
+            }
+            if (preferEnglish == 1)
+                return true;
+            else return false;
         }
     }
 }

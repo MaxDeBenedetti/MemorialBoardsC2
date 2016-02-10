@@ -17,6 +17,7 @@ namespace MemorialBoardsC2
 
         public static string hebPeopleS = "";
 
+        //extracts data from the report
         public List<Person> FetchPeople()
         {
             List<Person> people = new List<Person>();
@@ -56,6 +57,7 @@ namespace MemorialBoardsC2
             return people;
         }
 
+        //makes the .rmb file
         public void makeFile(List<Person> people)
         {
             string header = "";
@@ -75,6 +77,11 @@ namespace MemorialBoardsC2
             File.AppendAllLines(outputBody, lines);
         }
 
+        /// <summary>
+        /// Checks to see if the person's ID is in the file of IDs of people that prefer Hebrew
+        /// </summary>
+        /// <param name="p">person who's prefernce you want to check</param>
+        /// <returns>true if person is not on the list, false otherwise</returns>
         public static bool checkPreference(Person p)
         {
             if (hebPeopleS.Equals(""))
