@@ -233,27 +233,17 @@ namespace MemorialBoardsC2
             dayH = hc.GetDayOfMonth(deathdateG);
         }
 
-        
+
         public override string ToString()
         {
+            //The following bloc ensures that people die in the past.
             HebrewCalendar hc = new HebrewCalendar();
             DateTime d = DateTime.Today;
-            int year = yearH;
+            int year = (hc.IsLeapYear(hc.GetYear(d))) ? 5774 : 5773;
+            year = CheckPrefernce() ? year : yearH;
 
-            year =CheckPrefernce() ? year : yearH;//Use the Hebrew death year if the person prefers Hebrew
-
-            int onOff = 0;//0 if on, 1 if off
-
-            if (CheckPrefernce())
-            {
-                GregorianCalendar gc = new GregorianCalendar();
-                DayOfWeek sunday = DayOfWeek.Sunday;
-                CalendarWeekRule rule = CalendarWeekRule.FirstFullWeek;
-                onOff = (gc.GetWeekOfYear(d,rule,sunday) == gc.GetWeekOfYear(deathdateG,rule,sunday)) ? 0 : 1;
-            }
-
-            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, year, onOff);
+            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\"",
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, year);
         }
 
         /// <summary>
