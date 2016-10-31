@@ -238,7 +238,7 @@ namespace MemorialBoardsC2
         {
             //The following bloc ensures that people die in the past.
             HebrewCalendar hc = new HebrewCalendar();
-            DateTime d = DateTime.Today;
+            DateTime d = new DateTime( DateTime.Today.Year, monthG, dayG);
             int year = (hc.IsLeapYear(hc.GetYear(d))) ? 5774 : 5773;
             year = CheckPrefernce() ? year : yearH;
 
