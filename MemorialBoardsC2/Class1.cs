@@ -236,14 +236,24 @@ namespace MemorialBoardsC2
 
         public override string ToString()
         {
-            //The following bloc ensures that people die in the past.
-            HebrewCalendar hc = new HebrewCalendar();
-            DateTime d = new DateTime( DateTime.Today.Year, monthG, dayG);
-            int year = (hc.IsLeapYear(hc.GetYear(d))) ? 5774 : 5773;
-            year = CheckPrefernce() ? year : yearH;
+            int day, month, year, useEnglish;
+            if (this.CheckPrefernce())
+            {
+                day = dayG;
+                month = MonthG;
+                year = yearG;
+                useEnglish = 1;
+            }
+            else
+            {
+                day = dayH;
+                month = monthH;
+                year = yearH;
+                useEnglish = 0;
+            }
 
-            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayH, monthH, year);
+            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"",
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, day, month, year, useEnglish);
         }
 
         /// <summary>

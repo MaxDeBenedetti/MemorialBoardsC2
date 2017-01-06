@@ -14,7 +14,10 @@ namespace MemorialBoardsC2
             List<Person> people = fh.FetchPeople();
             foreach(Person p in people)
             {
-                p.ConvertToHebrew(p.CheckPrefernce());
+                if (p.CheckPrefernce())
+                {
+                    p.ConvertToHebrew(p.CheckPrefernce());
+                }
             }
             fh.makeFile(people);
         }
