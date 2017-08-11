@@ -237,7 +237,7 @@ namespace MemorialBoardsC2
         public override string ToString()
         {
             int day, month, year, useEnglish;
-            if (this.CheckPrefernce())
+            if (this.CheckEnlishPrefernce())
             {
                 day = dayG;
                 month = MonthG;
@@ -252,7 +252,7 @@ namespace MemorialBoardsC2
                 useEnglish = 0;
             }
 
-            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\"",
+            return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\",\"{8}\"",
                 plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, day, month, year, useEnglish);
         }
 
@@ -284,7 +284,7 @@ namespace MemorialBoardsC2
         /// Returns true if the person prefers the English date over Hebrew death date
         /// </summary>
         /// <returns>true if the person prefers English, false if Hebrew</returns>
-        public bool CheckPrefernce()
+        public bool CheckEnlishPrefernce()
         {
             if(preferEnglish == -1)
             {
