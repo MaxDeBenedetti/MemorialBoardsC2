@@ -12,16 +12,18 @@ namespace MemorialBoardsC2
         private string id;
         private string nameF;
         private string nameL;
-        private int dayG;
+        private int dayG;//G is for Gregorian
         private int monthG;
         private int yearG;
-        private int dayH;
+        private int dayH;//H is for Hebrew
         private int monthH;
         private int yearH;
         private DateTime deathdateG;
         private string plaqueNum1;
         private string plaqueNum2;
         private string plaqueNum3;
+
+        private int preferEnglish = -1;//for dynamic programming purposes
 
         public static int currentYearG = DateTime.UtcNow.Year;
 
@@ -194,7 +196,6 @@ namespace MemorialBoardsC2
             }
         }
 
-        private int preferEnglish = -1;
 
         public Person()
         {
@@ -237,23 +238,9 @@ namespace MemorialBoardsC2
         public override string ToString()
         {
             int day, month, year, useEnglish;
-            if (this.CheckEnlishPrefernce())
-            {
-                day = dayG;
-                month = MonthG;
-                year = yearG;
-                useEnglish = 1;
-            }
-            else
-            {
-                day = dayH;
-                month = monthH;
-                year = yearH;
-                useEnglish = 0;
-            }
-
+            
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\",\"{8}\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, day, month, year, useEnglish);
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayG, monthG, yearG, 1);
         }
 
         /// <summary>
@@ -286,7 +273,7 @@ namespace MemorialBoardsC2
         /// <returns>true if the person prefers English, false if Hebrew</returns>
         public bool CheckEnlishPrefernce()
         {
-            if(preferEnglish == -1)
+            if(preferEnglish == -1)//dynamic programming FTW
             {
                 preferEnglish = FileHandler.checkPreference(this) ? 1 : 0;
             }

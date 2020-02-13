@@ -4,3 +4,10 @@ D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialB
 D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.exe
 D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.pdb
 D:\0DDocuments\LightBoards\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.csprojResolveAssemblyReference.cache
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.exe
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.pdb
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.exe.config
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.exe
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\bin\Debug\MemorialBoardsC2.pdb
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.csprojAssemblyReference.cache
+D:\00Work\MemorialBoardsC2\MemorialBoardsC2\obj\Debug\MemorialBoardsC2.csproj.CoreCompileInputs.cache

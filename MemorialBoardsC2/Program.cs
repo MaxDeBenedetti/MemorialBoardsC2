@@ -12,13 +12,7 @@ namespace MemorialBoardsC2
         {
             FileHandler fh = new FileHandler();
             List<Person> people = fh.FetchPeople();
-            foreach(Person p in people)
-            {
-                if (!p.CheckEnlishPrefernce())
-                {
-                    p.ConvertToHebrew(p.CheckEnlishPrefernce());
-                }
-            }
+            
             fh.makeFile(people);
         }
     }
