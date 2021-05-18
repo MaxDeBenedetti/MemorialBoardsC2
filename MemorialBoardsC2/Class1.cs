@@ -220,14 +220,14 @@ namespace MemorialBoardsC2
 
 
         /// <summary>
-        /// Calculates the Hebrew date of the English anniversary of the person's death for this English year
+        /// Calculates the Hebrew date of the English anniversary of the person's death for the English year of death
         /// </summary>
-        public void ConvertToHebrew(bool useEnglish)
+        public void ConvertToHebrew()
         {
-            int year = useEnglish ? currentYearG : yearG;
+            //int year = useEnglish ? currentYearG : yearG; //deprecated
             GregorianCalendar gc = new GregorianCalendar(GregorianCalendarTypes.USEnglish);
             HebrewCalendar hc = new HebrewCalendar();
-            deathdateG = new DateTime(year, monthG, dayG, gc);
+            deathdateG = new DateTime(yearG, monthG, dayG, gc);
 
             yearH = hc.GetYear(deathdateG);
             monthH = CorrectedHebrewMonth(deathdateG);
@@ -237,10 +237,9 @@ namespace MemorialBoardsC2
 
         public override string ToString()
         {
-            int day, month, year, useEnglish;
-            
+                   
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\",\"{8}\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayG, monthG, yearG, 1);
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayG, monthG, yearG, preferEnglish);
         }
 
         /// <summary>
@@ -273,10 +272,7 @@ namespace MemorialBoardsC2
         /// <returns>true if the person prefers English, false if Hebrew</returns>
         public bool CheckEnlishPrefernce()
         {
-            if(preferEnglish == -1)//dynamic programming FTW
-            {
-                preferEnglish = FileHandler.checkPreference(this) ? 1 : 0;
-            }
+            
             if (preferEnglish == 1)
                 return true;
             else return false;
