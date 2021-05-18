@@ -32,7 +32,28 @@ namespace MemorialBoardsC2
 
                 while (csv.Read())
                 {
+                    //next part is done first in order to short circuit if the record does not have a plaque or is the marble
+                    string plaque = csv.GetField("Plaque");
+                    if (String.IsNullOrEmpty(plaque) || plaque.Contains("M"))
+                        continue;
 
+                    Person p = new Person();
+                    p.PlaqueNum1 = plaque.Substring(0, 1);
+                    p.PlaqueNum2 = plaque.Substring(1, 1);
+                    p.PlaqueNum3 = plaque.Substring(3, 2);
+
+                    p.Id = csv.GetField("Id");
+                    p.NameF = csv.GetField("Deceased First Name");
+                    p.NameL = csv.GetField("Deceased Last Name");
+
+                    //I decided to calculate the Hebrew dates from the English date rather than parsing the Hebrew date from the file
+                    string deathDate = csv.GetField("English Date");
+                    string[] numbers = deathDate.Split('-');
+                    p.YearG = int.Parse(numbers[0]);
+                    p.MonthG = int.Parse(numbers[1]);
+                    p.DayG = int.Parse(numbers[2]);
+
+                    people.Add(p);
                 }
             }
             else
