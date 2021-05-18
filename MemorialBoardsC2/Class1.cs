@@ -18,6 +18,7 @@ namespace MemorialBoardsC2
         private int dayH;//H is for Hebrew
         private int monthH;
         private int yearH;
+        private int dayU, monthU, yearU; //U is for used. Used in output
         private DateTime deathdateG;
         private string plaqueNum1;
         private string plaqueNum2;
@@ -239,7 +240,7 @@ namespace MemorialBoardsC2
         {
                    
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\",\"{8}\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayG, monthG, yearG, preferEnglish);
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayU, monthU, yearU, preferEnglish);
         }
 
         /// <summary>
@@ -272,10 +273,39 @@ namespace MemorialBoardsC2
         /// <returns>true if the person prefers English, false if Hebrew</returns>
         public bool CheckEnlishPrefernce()
         {
-            
+
             if (preferEnglish == 1)
+            {
+                
                 return true;
-            else return false;
+            }
+            else if (preferEnglish == 0)
+            {
+                
+                return false;
+            }
+            throw new Exception("preference not set for " + id);
+        }
+
+        /// <summary>
+        /// Changes the final output to use either Gregorian or Hebrew calendar based on the preference.
+        /// Should be called before we generate output. Likely in the main method.
+        /// </summary>
+        public void decideWhichCalendar()
+        {
+            if (CheckEnlishPrefernce())
+            {
+                dayU = dayG;
+                monthU = monthG;
+                yearU = yearG;
+            }
+            else
+            {
+                ConvertToHebrew();
+                dayU = dayH;
+                monthU = monthH;
+                yearU = yearH;
+            }
         }
     }
 }

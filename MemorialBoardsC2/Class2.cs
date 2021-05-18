@@ -27,6 +27,13 @@ namespace MemorialBoardsC2
                 TextReader reader = new StreamReader(input);
                 CsvReader csv = new CsvReader((IParser)reader);
 
+                csv.Read();
+                csv.ReadHeader();
+
+                while (csv.Read())
+                {
+
+                }
             }
             else
                 throw new System.IO.FileNotFoundException("No input file");

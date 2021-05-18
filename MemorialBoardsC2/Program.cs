@@ -12,6 +12,11 @@ namespace MemorialBoardsC2
         {
             FileHandler fh = new FileHandler();
             List<Person> people = fh.FetchPeople();
+
+            foreach(Person p in people)
+            {
+                p.decideWhichCalendar();
+            }
             
             fh.makeFile(people);
         }
