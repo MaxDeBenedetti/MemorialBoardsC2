@@ -24,8 +24,8 @@ namespace MemorialBoardsC2
             List<Person> people = new List<Person>();
             if (File.Exists(input))
             {
-                TextReader reader = new StreamReader(input);
-                CsvReader csv = new CsvReader((IParser)reader);
+                var reader = new StreamReader(input);
+                var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture);
 
                 csv.Read();
                 csv.ReadHeader();
@@ -50,8 +50,11 @@ namespace MemorialBoardsC2
                     string deathDate = csv.GetField("English Date");
                     string[] numbers = deathDate.Split('-');
                     p.YearG = int.Parse(numbers[0]);
+                    if (p.YearG < 1) continue;
                     p.MonthG = int.Parse(numbers[1]);
                     p.DayG = int.Parse(numbers[2]);
+
+                    p.PreferEnglish = csv.GetField("English Observance").Equals("Y") ? 1 : 0;
 
                     people.Add(p);
                 }

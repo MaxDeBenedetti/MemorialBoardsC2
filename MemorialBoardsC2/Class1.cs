@@ -24,7 +24,7 @@ namespace MemorialBoardsC2
         private string plaqueNum2;
         private string plaqueNum3;
 
-        private int preferEnglish = -1;//for dynamic programming purposes
+        private int preferEnglish = -1;//for dynamic programming purposes. 1 for yes 0 for no
 
         public static int currentYearG = DateTime.UtcNow.Year;
 
@@ -197,6 +197,7 @@ namespace MemorialBoardsC2
             }
         }
 
+        public int PreferEnglish { get => preferEnglish; set => preferEnglish = value; }
 
         public Person()
         {
@@ -240,7 +241,7 @@ namespace MemorialBoardsC2
         {
                    
             return String.Format("\"{0}\",\"{1}\",\"{2}\",\"{3} {4}\",\"{5}\",\"{6}\",\"{7}\",\"0\",\"{8}\"",
-                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayU, monthU, yearU, preferEnglish);
+                plaqueNum1, plaqueNum2, plaqueNum3, nameF, nameL, dayU, monthU, yearU, PreferEnglish);
         }
 
         /// <summary>
@@ -274,12 +275,12 @@ namespace MemorialBoardsC2
         public bool CheckEnlishPrefernce()
         {
 
-            if (preferEnglish == 1)
+            if (PreferEnglish == 1)
             {
                 
                 return true;
             }
-            else if (preferEnglish == 0)
+            else if (PreferEnglish == 0)
             {
                 
                 return false;
