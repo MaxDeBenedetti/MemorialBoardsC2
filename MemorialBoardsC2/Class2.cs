@@ -44,7 +44,9 @@ namespace MemorialBoardsC2
 
                     p.Id = csv.GetField("Id");
                     p.NameF = csv.GetField("Deceased First Name");
+                    p.NameF = p.NameF.Replace('"', '\'');
                     p.NameL = csv.GetField("Deceased Last Name");
+                    p.NameL = p.NameL.Replace('"', '\'');
 
                     //I decided to calculate the Hebrew dates from the English date rather than parsing the Hebrew date from the file
                     string deathDate = csv.GetField("English Date");
